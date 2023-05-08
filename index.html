@@ -48,50 +48,50 @@
         //listens for button click and triggers addTask function on event.
         taskButton.addEventListener('click', addTask);
 
-              //Adds input task into an array.
-            function addTask()
-              {
-                let priorityPicked;
-                //cycles through the radio circals, checks witch one is selected and setting that value to priorityPicked.
-                for (let i =0; i < priorityLevel.length; i++)
-                {
-                    //looks witch radio is checked
-                    if (priorityLevel[i].checked)
-                    {
-                        priorityPicked = priorityLevel[i].value;
-                        //clears checked radio
-                        priorityLevel[i].checked = false;
-                    }
-                }
-
-                // Creates a object of the task and joins it with the priorityPicked.
-                let task = { text: taskInput.value, priority: priorityPicked };
-                //pushes most recent taskInput onto array.
-                tasks.push(task);
-                //clears taskInput.
-                taskInput.value = "";
-                //clears HTML ul element to advoid dupes.
-                taskList.innerHTML = "";
-                setTask(tasks);
-              }
-
-            function setTask(tasks)
+        //Adds input task into an array.
+        function addTask()
+        {
+            let priorityPicked;
+            //cycles through the radio circals, checks witch one is selected and setting that value to priorityPicked.
+            for (let i =0; i < priorityLevel.length; i++)
             {
-                //creates each task within li tag and input/type checkbox tags. Sends taskList to ul tag in HTML.
-                for (let i = 0; i < tasks.length; i++)
+                //looks witch radio is checked
+                if (priorityLevel[i].checked)
                 {
-                    let list = document.createElement("li");
-                    let check = document.createElement("input");
-                    check.type = "checkbox";
-                    check.id = "checkPoints";
-                    //adds a checkbox to each task and appends into the list
-                    list.appendChild(check);
-                    //adds the text/priority of the task appended into the list
-                    list.appendChild(document.createTextNode(" "+(tasks[i].text)+" : Priority "+(tasks[i].priority)));
-                    //takes the list and appends it to the HTML taskList
-                    taskList.appendChild(list);
+                    priorityPicked = priorityLevel[i].value;
+                    //clears checked radio
+                    priorityLevel[i].checked = false;
                 }
             }
+
+            // Creates a object of the task and joins it with the priorityPicked.
+            let task = { text: taskInput.value, priority: priorityPicked };
+            //pushes most recent taskInput onto array.
+            tasks.push(task);
+            //clears taskInput.
+            taskInput.value = "";
+            //clears HTML ul element to advoid dupes.
+            taskList.innerHTML = "";
+            setTask(tasks);
+        }
+
+        function setTask(tasks)
+        {
+            //creates each task within li tag and input/type checkbox tags. Sends taskList to ul tag in HTML.
+            for (let i = 0; i < tasks.length; i++)
+            {
+                let list = document.createElement("li");
+                let check = document.createElement("input");
+                check.type = "checkbox";
+                check.id = "checkPoints";
+                //adds a checkbox to each task and appends into the list
+                list.appendChild(check);
+                //adds the text/priority of the task appended into the list
+                list.appendChild(document.createTextNode(" "+(tasks[i].text)+" : Priority "+(tasks[i].priority)));
+                //takes the list and appends it to the HTML taskList
+                taskList.appendChild(list);
+            }
+        }
 
         let addButton = document.getElementById("add");
         let num1 = document.getElementById("f1");
