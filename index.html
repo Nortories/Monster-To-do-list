@@ -73,6 +73,8 @@
             //clears HTML ul element to advoid dupes.
             taskList.innerHTML = "";
             setTask(tasks);
+            save(tasks)
+            //saves tasks after creating the new task
         }
 
         function setTask(tasks)
@@ -92,6 +94,28 @@
                 taskList.appendChild(list);
             }
         }
+        function save(tasks)
+        {
+            localStorage.setItem("store_tasks", JSON.stringify(tasks)); 
+            localStorage.setItem("darkModeEnabled", 'Y'); 
+            // store the tasks array in local storage
+        }
+
+        function loadTasks()
+        {
+            let savedTasks = localStorage.getItem("store_tasks"); 
+            // retrieve the tasks array from local storage
+            if (savedTasks != null)
+            {
+                tasks = JSON.parse(savedTasks); 
+                // convert the string back to an array
+                setTask(tasks); 
+                // update the task list on the page with the saved tasks
+            }
+        }
+
+        loadTasks();
+        //when the js is ran will loadtasks from localStorage
 
         let addButton = document.getElementById("add");
         let num1 = document.getElementById("f1");
